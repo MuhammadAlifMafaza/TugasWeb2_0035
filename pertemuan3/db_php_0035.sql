@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Okt 2024 pada 15.04
+-- Waktu pembuatan: 20 Okt 2024 pada 15.16
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -44,12 +44,13 @@ CREATE TABLE `tb_users` (
 --
 
 INSERT INTO `tb_users` (`id`, `nama`, `alamat`, `jenis_kelamin`, `nohp`, `email`, `foto`, `waktu_buat`, `waktu_edit`) VALUES
-(4, 'Muhammad Alif Mafaza', 'Jl. Prisma 1 No.04', 'Laki-Laki', '085201122228', 'muhammadalifmafaza@gmail.com', 'uploads/IMG_20230424_082418_300.webp', '2024-10-20 12:12:53', '2024-10-20 12:17:59'),
+(4, 'Muhammad Alif Mafaza', 'Jl. Prisma 1 No.04', 'Perempuan', '085201122228', 'muhammadalifmafaza@gmail.com', 'uploads/IMG_20230424_082418_300.webp', '2024-10-20 12:12:53', '2024-10-20 13:05:35'),
 (5, 'ARI PUTRA WIBOWO, S.KOM	', 'Kemayoran', 'Laki-Laki', '01571092571290', 'ariputrawibowo@gmail.com', 'uploads/Potrait.jpg', '2024-10-20 12:56:14', '2024-10-20 12:56:14'),
 (6, 'Joko Widodo', 'Yogyakarta', 'Laki-Laki', '021510251805', 'widodo@gmail.com', 'uploads/Joko_Widodo_2019_official_portrait.jpg', '2024-10-20 13:01:37', '2024-10-20 13:01:37'),
 (7, 'Susilo Bambang Yudhoyono', 'Jakarta', 'Laki-Laki', '021581025810', 'BambangYudhoyono@gmail.com', 'uploads/Presiden_Susilo_Bambang_Yudhoyono.png', '2024-10-20 13:02:21', '2024-10-20 13:02:21'),
-(8, 'Soekarno', 'Klaten', 'Laki-Laki', '085421907150715', 'soekarnoJaya@gmail.com', 'uploads/Presiden_Sukarno.jpg', '2024-10-20 13:03:00', '2024-10-20 13:03:00'),
-(9, 'Prabowo Subianto', 'Bandung', 'Laki-Laki', '085210852120', 'prabowosubianto231@gmail.com', 'uploads/Prabowo_Subianto_2024_official_portrait.jpg', '2024-10-20 13:03:59', '2024-10-20 13:03:59');
+(8, 'Soekarno', 'Klaten', 'Laki-Laki', '085421907150715', 'soekarnoJaya@gmail.com', 'uploads/Presiden_Sukarno.jpg', '2024-10-20 13:03:00', '2024-10-20 13:13:04'),
+(9, 'Prabowo Subianto', 'Bandung', 'Laki-Laki', '085210852120', 'prabowosubianto231@gmail.com', 'uploads/Prabowo_Subianto_2024_official_portrait.jpg', '2024-10-20 13:03:59', '2024-10-20 13:03:59'),
+(10, 'Arsy Zamnia', 'Jl. Kemayoran Semarang no.42', 'Perempuan', '08520124515215', 'arsyzamnia@gmail.com', 'uploads/girls.png', '2024-10-20 13:16:05', '2024-10-20 13:16:05');
 
 --
 -- Indexes for dumped tables
@@ -70,7 +71,7 @@ ALTER TABLE `tb_users`
 -- AUTO_INCREMENT untuk tabel `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
