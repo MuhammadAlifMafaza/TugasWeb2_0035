@@ -50,7 +50,7 @@ $data = $user->tampilData();
         <table class="table table-bordered table-striped">
             <thead class="thead-light">
                 <tr>
-                    <th>ID</th>
+                    <th>No</th>
                     <th>Nama</th>
                     <th>Alamat</th>
                     <th>No HP</th>
@@ -58,12 +58,13 @@ $data = $user->tampilData();
                 </tr>
             </thead>
             <tbody>
+                <?php $no = 1; // Initialize the counter ?>
                 <?php foreach ($data as $row): ?>
                     <tr>
-                        <td><?= $row['id']; ?></td>
-                        <td><?= $row['nama']; ?></td>
-                        <td><?= $row['alamat']; ?></td>
-                        <td><?= $row['nohp']; ?></td>
+                        <td><?= $no++; ?></td> <!-- Display the serial number -->
+                        <td><?= htmlspecialchars($row['nama']); ?></td>
+                        <td><?= htmlspecialchars($row['alamat']); ?></td>
+                        <td><?= htmlspecialchars($row['nohp']); ?></td>
                         <td>
                             <a href="update-data.php?id=<?= $row['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
                             <a href="proses.php?action=delete&id=<?= $row['id']; ?>" class="btn btn-danger btn-sm" 
@@ -83,7 +84,7 @@ $data = $user->tampilData();
             if (message) {
                 message.style.display = 'none';
             }
-        }, 5000); 
+        }, 2000); 
     </script>
 </body>
 </html>
