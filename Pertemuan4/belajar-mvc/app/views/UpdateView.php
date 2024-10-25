@@ -60,11 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" value="<?= htmlspecialchars($data['email']); ?>" required>
             </div>
-            <div class="mb-3">
-                <label for="foto" class="form-label">Foto</label>
-                <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
-                <small class="form-text text-muted">Biarkan kosong jika tidak ingin mengubah foto.</small>
-            </div>
             <button type="submit" class="btn btn-warning">Update</button>
             <a href="index.php" class="btn btn-secondary">Kembali</a>
         </form>
