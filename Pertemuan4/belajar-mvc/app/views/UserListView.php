@@ -52,7 +52,7 @@
                         <td><?= htmlspecialchars($user['name']); ?></td>
                         <td><?= htmlspecialchars($user['email']); ?></td>
                         <td>
-                            <a href="UpdateView.php?id=<?= $user['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="UserUpdateView.php?id=<?= $user['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
                             <a href="proses.php?action=delete&id=<?= $user['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
                             <a href="UserDetailView.php?id=<?= $user['id']; ?>" class="btn btn-info btn-sm">Detail</a>
                         </td>
@@ -60,7 +60,7 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <a href="InputView.php?id=<?= $user['id']; ?>" class="btn btn-primary">Add User</a>
+        <a href="UserInputView.php?id=<?= $user['id']; ?>" class="btn btn-primary">Add User</a>
     </div>
 </body>
 </html>

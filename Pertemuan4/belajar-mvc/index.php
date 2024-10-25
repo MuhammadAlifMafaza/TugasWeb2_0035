@@ -1,13 +1,15 @@
 <?php
-require_once 'app/config/database.php';
-require_once 'app/controllers/UserController.php';
-
-$dbConnection = getDBConnection();
-$controller = new UserController($dbConnection);
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
-    $controller->show($_GET['id']); // Show specific user if ID is present
-} else {
-    require 'app/views/UserListView.php'; // Otherwise, show all users
+// index.php
+try {
+    $dbConnection = new PDO('mysql:host=localhost;dbname=dbmvc', 'root', '');
+    $dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
 }
+
+require_once 'app/controllers/UserController.php';
+$controller = new UserController($dbConnection);
+require 'app/views/UserListView.php'; // Load the user list view
+require 'app/views/UserListView.php'; // Load the user list view
+require 'app/views/UserListView.php'; // Load the user list view
 ?>
