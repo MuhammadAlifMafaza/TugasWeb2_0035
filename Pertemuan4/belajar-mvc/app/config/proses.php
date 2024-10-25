@@ -17,53 +17,42 @@ class User {
     private $conn;
 
     public function __construct() {
-        $database = new Database();
-        $this->conn = $database->getConnection();
+        $this->conn = getDBConnection(); // Correctly get DB connection
     }
 
-    public function tambahData($nama, $alamat, $jenis_kelamin, $nohp, $email, $foto) {
-        $query = "INSERT INTO tb_users (nama, alamat, jenis_kelamin, nohp, email, foto) VALUES (:nama, :alamat, :jenis_kelamin, :nohp, :email, :foto)";
+    public function tambahData($name, $email) {
+        $query = "INSERT INTO users (name, email) VALUES (:name, :email)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':nama', $nama);
-        $stmt->bindParam(':alamat', $alamat);
-        $stmt->bindParam(':jenis_kelamin', $jenis_kelamin);
-        $stmt->bindParam(':nohp', $nohp);
+        $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':foto', $foto);
         return $stmt->execute();
     }
 
-    public function editData($id, $nama, $alamat, $jenis_kelamin, $nohp, $email, $foto) {
-        $query = "UPDATE tb_users SET nama = :nama, alamat = :alamat, jenis_kelamin = :jenis_kelamin, nohp = :nohp, email = :email" . ($foto ? ", foto = :foto" : "") . " WHERE id = :id";
+    public function editData($id, $name, $email) {
+        $query = "UPDATE users SET name = :name, email = :email WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':nama', $nama);
-        $stmt->bindParam(':alamat', $alamat);
-        $stmt->bindParam(':jenis_kelamin', $jenis_kelamin);
-        $stmt->bindParam(':nohp', $nohp);
+        $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
-        if ($foto) {
-            $stmt->bindParam(':foto', $foto);
-        }
         return $stmt->execute();
     }
 
     public function hapusData($id) {
-        $query = "DELETE FROM tb_users WHERE id = :id";
+        $query = "DELETE FROM users WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
 
     public function tampilData() {
-        $query = "SELECT * FROM tb_users";
+        $query = "SELECT * FROM users";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getDataById($id) {
-        $query = "SELECT * FROM tb_users WHERE id = :id";
+        $query = "SELECT * FROM users WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->execute();

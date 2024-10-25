@@ -5,7 +5,7 @@ function getDBConnection() {
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $db;
     } catch (PDOException $e) {
-        echo 'Connection Failed: ' . $e->getMessage();
+        die('Database connection failed: ' . $e->getMessage());
     }
 }
 ?>

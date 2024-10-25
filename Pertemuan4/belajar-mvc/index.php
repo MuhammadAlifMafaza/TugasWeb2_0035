@@ -2,15 +2,12 @@
 require_once 'app/config/database.php';
 require_once 'app/controllers/UserController.php';
 
-// Koneksi ke database
 $dbConnection = getDBConnection();
-
-// Mendapatkan parameter dari URL (misalnya: index.php?id=1)
-$id = isset($_GET['id']) ? intval($_GET['id']) : 1;
-
-// Membuat instance UserController
 $controller = new UserController($dbConnection);
 
-// Menampilkan data pengguna berdasarkan id
-$controller->show($id);
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
+    $controller->show($_GET['id']); // Show specific user if ID is present
+} else {
+    require 'app/views/UserListView.php'; // Otherwise, show all users
+}
 ?>

@@ -2,20 +2,22 @@
 require_once 'app/models/User.php';
 
 class UserController {
-    private $userModel;
+    public $userModel;
 
     public function __construct($dbConnection) {
         $this->userModel = new User($dbConnection);
     }
 
-    public function show($id){
-        // Mengambil data pengguna dari model
+    public function show($id) {
+        // Get user data from model
         $user = $this->userModel->getUserById($id);
 
-        // Membuat view dan meneruskan data pengguna
-        require_once 'app/views/UserView.php';
+        // Create view and pass user data
+        require_once 'app/views/UserListView.php';
     }
 
-    
+    public function getAllUsers() {
+        return $this->userModel->tampilData(); // This should call the tampilData() method
+    }
 }
 ?>

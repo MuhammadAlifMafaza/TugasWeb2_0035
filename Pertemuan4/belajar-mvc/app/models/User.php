@@ -12,5 +12,11 @@ class User {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function tampilData() {  // Ensure this method is present
+        $stmt = $this->db->prepare("SELECT id, name, email FROM users");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>
