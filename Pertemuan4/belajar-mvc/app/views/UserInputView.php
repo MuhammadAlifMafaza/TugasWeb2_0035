@@ -1,15 +1,15 @@
 <?php
 // UserInputView.php
 
-include_once 'app/controllers/UserController.php'; // Mengimpor UserController
-$controller = new UserController($dbConnection); // Inisialisasi controller
+require_once 'app/controllers/UserController.php';
+$controller = new UserController($dbConnection);
 
-// Proses form jika metode request adalah POST
+// Proses form saat metode request adalah POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $controller->addUser($name, $email); // Menggunakan method controller untuk menambah pengguna
-    header("Location: index.php?message=Data berhasil ditambahkan");
+    $controller->userModel->tambahData($name, $email);
+    header("Location: index.php?message=User berhasil ditambahkan");
     exit;
 }
 ?>
@@ -20,9 +20,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Tambah Pengguna</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #4CC9FE, #a2dff7);
+            color: #22223b;
+        }
+        .container {
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        h1 {
+            color: #ff7043;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container">
         <h1>Tambah Pengguna</h1>
         <form method="post" action="">
             <div class="mb-3">
