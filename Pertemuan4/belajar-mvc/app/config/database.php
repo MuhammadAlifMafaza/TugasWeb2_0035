@@ -1,4 +1,7 @@
 <?php
+// database.php
+
+// Fungsi untuk mendapatkan koneksi database
 function getDBConnection() {
     try {
         $db = new PDO('mysql:host=localhost;dbname=dbmvc', 'root', '');

@@ -1,9 +1,14 @@
 <?php
+// proses.php
+
 include_once 'database.php';
 
-if (isset($_GET['action']) && $_GET['action'] === 'delete') {
+// Proses untuk menghapus data pengguna
+if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])) {
     $id = $_GET['id'];
     $user = new User();
+
+    // Menghapus data dan melakukan redirect
     if ($user->hapusData($id)) {
         header("Location: index.php?message=Data berhasil dihapus");
         exit;
@@ -16,10 +21,12 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete') {
 class User {
     private $conn;
 
+    // Menginisialisasi koneksi database
     public function __construct() {
-        $this->conn = getDBConnection(); // Correctly get DB connection
+        $this->conn = getDBConnection(); 
     }
 
+    // Menambahkan data pengguna
     public function tambahData($name, $email) {
         $query = "INSERT INTO users (name, email) VALUES (:name, :email)";
         $stmt = $this->conn->prepare($query);
@@ -28,6 +35,7 @@ class User {
         return $stmt->execute();
     }
 
+    // Mengedit data pengguna
     public function editData($id, $name, $email) {
         $query = "UPDATE users SET name = :name, email = :email WHERE id = :id";
         $stmt = $this->conn->prepare($query);
@@ -37,6 +45,7 @@ class User {
         return $stmt->execute();
     }
 
+    // Menghapus data pengguna
     public function hapusData($id) {
         $query = "DELETE FROM users WHERE id = :id";
         $stmt = $this->conn->prepare($query);
@@ -44,6 +53,7 @@ class User {
         return $stmt->execute();
     }
 
+    // Menampilkan semua data pengguna
     public function tampilData() {
         $query = "SELECT * FROM users";
         $stmt = $this->conn->prepare($query);
@@ -51,6 +61,7 @@ class User {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Mendapatkan data pengguna berdasarkan ID
     public function getDataById($id) {
         $query = "SELECT * FROM users WHERE id = :id";
         $stmt = $this->conn->prepare($query);
