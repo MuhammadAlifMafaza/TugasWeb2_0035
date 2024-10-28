@@ -69,5 +69,14 @@ $users = $controller->getAllUsers(); // Mendapatkan semua data pengguna
             </tbody>
         </table>
     </div>
+    <script>
+        // Hide message after 5 seconds
+        setTimeout(() => {
+            const message = document.getElementById('message');
+            if (message) {
+                message.style.display = 'none';
+            }
+        }, 2000); 
+    </script>
 </body>
 </html>
