@@ -1,7 +1,7 @@
 <?php
 // UserListView.php
-
 $users = $controller->getAllUsers(); // Mendapatkan semua data pengguna
+require_once 'app/config/proses.php';
 ?>
 
 <!DOCTYPE html>
@@ -51,21 +51,25 @@ $users = $controller->getAllUsers(); // Mendapatkan semua data pengguna
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($users as $user): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($user['id']); ?></td>
-                        <td><?= htmlspecialchars($user['name']); ?></td>
-                        <td><?= htmlspecialchars($user['email']); ?></td>
-                        <td>
-                            <!-- Button untuk detail pengguna -->
-                            <a href="?actionView=detailView&id=<?= $user['id'] ?>" class="btn btn-info">Detail</a>
-                            <!-- Button untuk update pengguna -->
-                            <a href="?actionView=updateView&id=<?= $user['id'] ?>" class="btn btn-warning">Edit</a>
-                            <!-- Button untuk hapus data pengguna -->
-                            <a href="?actionView=hapusData&id=<?= $user['id']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+            <?php foreach ($users as $user): ?>
+                <tr>
+                    <td><?= htmlspecialchars($user['id']); ?></td>
+                    <td><?= htmlspecialchars($user['name']); ?></td>
+                    <td><?= htmlspecialchars($user['email']); ?></td>
+                    <td>
+                        <!-- Button untuk detail pengguna -->
+                        <a href="?actionView=detailView&id=<?= $user['id'] ?>" class="btn btn-info">Detail</a>
+                        <!-- Button untuk update pengguna -->
+                        <a href="?actionView=updateView&id=<?= $user['id'] ?>" class="btn btn-warning">Edit</a>
+                        <!-- Button untuk hapus data pengguna -->
+                        <a href="?actionView=hapusData&id=<?= $user['id']; ?>" 
+                        class="btn btn-danger" 
+                        onclick="return confirm('Apakah Anda yakin ingin menghapus data <?= htmlspecialchars($user['name']); ?> ini?')">
+                        Hapus
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>
