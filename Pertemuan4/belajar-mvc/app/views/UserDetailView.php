@@ -1,12 +1,12 @@
 <?php
 // UserDetailView.php
 
-include_once 'proses.php';
-$user = new User();
+include_once 'app/config/proses.php';
+$proses = new proses();
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $data = $user->getDataById($id);
+    $data = $proses->getDataById($id);
 }
 ?>
 
@@ -46,12 +46,12 @@ if (isset($_GET['id'])) {
     <div class="container">
         <h1>Detail Pengguna</h1>
         <div class="text-center">
-            <img src="path_to_profile_image.jpg" alt="Profile Image" class="profile-img">
+            <img src="assets/Image/" alt="Profile Image" class="profile-img">
         </div>
         <p><strong>ID:</strong> <?= htmlspecialchars($data['id']); ?></p>
         <p><strong>Nama:</strong> <?= htmlspecialchars($data['name']); ?></p>
         <p><strong>Email:</strong> <?= htmlspecialchars($data['email']); ?></p>
-        <a href="UserListView.php" class="btn btn-secondary">Kembali</a>
+        <a href="?actionView=list" class="btn btn-secondary">Kembali</a>
     </div>
 </body>
 </html>

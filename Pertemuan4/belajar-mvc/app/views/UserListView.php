@@ -39,7 +39,8 @@ $users = $controller->getAllUsers(); // Mendapatkan semua data pengguna
 <body>
     <div class="container">
         <h1>Daftar Pengguna</h1>
-        <a href="UserInputView.php" class="btn btn-primary mb-3">Tambah Pengguna</a>
+        <!-- Button untuk form input pengguna baru -->
+        <a href="?actionView=inputView" class="btn btn-primary mb-3">Tambah Pengguna</a>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -56,10 +57,12 @@ $users = $controller->getAllUsers(); // Mendapatkan semua data pengguna
                         <td><?= htmlspecialchars($user['name']); ?></td>
                         <td><?= htmlspecialchars($user['email']); ?></td>
                         <td>
-                            <a href="UserDetailView.php?id=<?= $user['id']; ?>" class="btn btn-info">Detail</a>
-                            <a href="UserUpdateView.php?id=<?= $user['id']; ?>" class="btn btn-warning">Edit</a>
-                            <a href="proses.php?action=delete&id=<?= $user['id']; ?>" class="btn btn-danger" 
-                               onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                            <!-- Button untuk detail pengguna -->
+                            <a href="?actionView=detailView&id=<?= $user['id'] ?>" class="btn btn-info">Detail</a>
+                            <!-- Button untuk update pengguna -->
+                            <a href="?actionView=updateView&id=<?= $user['id'] ?>" class="btn btn-warning">Edit</a>
+                            <!-- Button untuk hapus data pengguna -->
+                            <a href="?actionView=hapusData&id=<?= $user['id']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

@@ -4,12 +4,12 @@
 require_once 'app/controllers/UserController.php';
 $controller = new UserController($dbConnection);
 
-// Proses form saat metode request adalah POST
+// Proses form jika metode request adalah POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $controller->userModel->tambahData($name, $email);
-    header("Location: index.php?message=User berhasil ditambahkan");
+    header("Location: index.php?view=list&message=User berhasil ditambahkan");
     exit;
 }
 ?>
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <h1>Tambah Pengguna</h1>
-        <form method="post" action="">
+        <form method="post" action="?actionView=simpanData">
             <div class="mb-3">
                 <label for="name" class="form-label">Nama</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
-            <a href="index.php" class="btn btn-secondary">Kembali</a>
+            <a href="?actionView=listView" class="btn btn-secondary">Kembali</a>
         </form>
     </div>
 </body>

@@ -6,15 +6,14 @@ $controller = new UserController($dbConnection);
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $user = $controller->userModel->getDataById($id); // Mengambil data pengguna yang akan diedit
+    $user = $controller->userModel->getDataById($id); // Mendapatkan data pengguna yang akan di-update
 }
 
-// Proses form jika metode request adalah POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $controller->userModel->editData($id, $name, $email);
-    header("Location: index.php?message=Data berhasil diupdate");
+    header("Location: index.php?view=list&message=Data berhasil diupdate");
     exit;
 }
 ?>
@@ -47,7 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <h1>Update Pengguna</h1>
-        <form method="post" action="">
+        <form method="post" action="?actionView=simpanUpdate">
+            <input type="hidden" class="form-control" id="id" name="id" value="<?= htmlspecialchars($user['id']); ?>" required>
             <div class="mb-3">
                 <label for="name" class="form-label">Nama</label>
                 <input type="text" class="form-control" id="name" name="name" value="<?= htmlspecialchars($user['name']); ?>" required>
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="email" class="form-control" id="email" name="email" value="<?= htmlspecialchars($user['email']); ?>" required>
             </div>
             <button type="submit" class="btn btn-warning">Simpan</button>
-            <a href="index.php" class="btn btn-secondary">Kembali</a>
+            <a href="?actionView=listView" class="btn btn-secondary">Kembali</a>
         </form>
     </div>
 </body>

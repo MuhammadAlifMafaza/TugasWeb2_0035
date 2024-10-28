@@ -1,23 +1,66 @@
 <?php
-// index.php
-
-// Mengatur koneksi database menggunakan fungsi dari database.php
-require_once 'app/config/database.php'; 
+// Mengatur koneksi database
+require_once 'app/config/database.php';
 $dbConnection = getDBConnection();
 
-// Mengimpor UserController dan inisialisasi
+// Inisialisasi controller
 require_once 'app/controllers/UserController.php';
 $controller = new UserController($dbConnection);
 
-// Menampilkan view daftar pengguna
-require 'app/views/UserListView.php'; 
+// Memeriksa parameter 'actionView'
+$actionView = isset($_GET['actionView']) ? $_GET['actionView'] : 'list';
+$id = isset($_GET['id']) ? $_GET['id'] : null;
 
-// Menampilkan view input data pengguna
-// require 'app/views/UserInputView.php'; // Load the user input view
+switch ($actionView) {
+    case 'inputView':
+        require 'app/views/UserInputView.php';
+        break;
 
-// Menampilkan view udpate data pengguna
-// require 'app/views/UserUpdateView.php'; // Load the user update view
+    case 'updateView':
+        if ($id) {
+            $user = $controller->show($id); // Mendapatkan data pengguna
+        }
+        require 'app/views/UserUpdateView.php';
+        break;
 
-// Menampilkan view detail data pengguna
-// require 'app/views/UserDetailView.php'; // Load the user detail view
+    case 'detailView':
+        if ($id) {
+            $user = $controller->show($id); // Mendapatkan data detail
+        }
+        require 'app/views/UserDetailView.php';
+        break;
+
+    case 'listView':
+    default:
+        $users = $controller->getAllUsers(); // Mendapatkan semua pengguna
+        require 'app/views/UserListView.php';
+        break;
+        
+    case 'simpanData':
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $controller->addUser($name, $email); // Simpan data pengguna baru
+    }
+    header('Location: ?actionView=list'); // Redirect ke daftar pengguna
+    exit;
+
+    case 'simpanUpdate':
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $controller->updateUser($id, $name, $email); // Update data pengguna
+    }
+    header('Location: ?actionView=list'); // Redirect ke daftar pengguna
+    exit;
+
+    case 'hapusData':
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $controller->deleteUser($id); // Memanggil fungsi hapus pengguna
+        }
+        header('Location: ?actionView=list'); // Redirect ke daftar pengguna
+        exit;    
+}
 ?>

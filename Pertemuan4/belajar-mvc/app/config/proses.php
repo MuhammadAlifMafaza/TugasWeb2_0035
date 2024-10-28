@@ -18,7 +18,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])
     }
 }
 
-class User {
+class proses {
     private $conn;
 
     // Menginisialisasi koneksi database
