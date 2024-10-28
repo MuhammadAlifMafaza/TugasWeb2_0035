@@ -46,7 +46,7 @@ if (isset($_GET['id'])) {
     <div class="container">
         <h1>Detail Pengguna</h1>
         <div class="text-center">
-            <img src="assets/Image/" alt="Profile Image" class="profile-img">
+            <img src="../assets/images/logo.png" alt="Profile Image" class="profile-img">
         </div>
         <p><strong>ID:</strong> <?= htmlspecialchars($data['id']); ?></p>
         <p><strong>Nama:</strong> <?= htmlspecialchars($data['name']); ?></p>

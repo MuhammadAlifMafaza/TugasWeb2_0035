@@ -62,11 +62,8 @@ require_once 'app/config/proses.php';
                         <!-- Button untuk update pengguna -->
                         <a href="?actionView=updateView&id=<?= $user['id'] ?>" class="btn btn-warning">Edit</a>
                         <!-- Button untuk hapus data pengguna -->
-                        <a href="?actionView=hapusData&id=<?= $user['id']; ?>" 
-                        class="btn btn-danger" 
-                        onclick="return confirm('Apakah Anda yakin ingin menghapus data <?= htmlspecialchars($user['name']); ?> ini?')">
-                        Hapus
-                        </a>
+                        <a href="?actionView=hapusData&id=<?= $user['id']; ?>" class="btn btn-danger" 
+                        onclick="return confirm('Apakah Anda yakin ingin menghapus data user <?= htmlspecialchars($user['name']); ?> ini?')">Hapus</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
