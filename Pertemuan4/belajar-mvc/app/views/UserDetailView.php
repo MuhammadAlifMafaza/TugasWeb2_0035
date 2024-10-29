@@ -2,14 +2,13 @@
 // UserDetailView.php
 
 include_once 'app/config/proses.php';
-$proses = new Proses();  // Pastikan nama kelas sesuai dengan perubahan sebelumnya
+$proses = new Proses();  // Pastikan nama kelas dan file sesuai
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $data = $proses->getDataById($id);  // Ambil data pengguna berdasarkan ID
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,21 +27,16 @@ if (isset($_GET['id'])) {
             padding: 30px;
             background-color: rgba(255, 255, 255, 0.9);
         }
-        .profile-img {
-            width: 256px;
-            height: 256px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid black; /* Border lebih tipis dan hitam */
-            margin: auto; /* Agar gambar terpusat dalam kolom */
-        }
         h1 {
             color: #ff7043;
             text-align: center;
             margin-bottom: 30px;
         }
         .row {
-            align-items: center; /* Agar gambar dan teks sejajar vertikal */
+            align-items: center;
+        }
+        .data-section {
+            padding-left: 30px; /* Tambahan padding kiri 30px */
         }
         .data-section p {
             margin: 0;
@@ -52,28 +46,17 @@ if (isset($_GET['id'])) {
 </head>
 <body>
     <div class="container">
-        <h1>Detail Data Pengguna</h1>
+        <h1>Detail Pengguna</h1>
         <div class="row">
-            <!-- Gambar profil di bagian kiri -->
-            <div class="col-md-4 text-center">
-                <img src="../assets/images/logo.png" alt="Profile Image" class="profile-img">
-            </div>
-            
-            <!-- Data pengguna di bagian kanan -->
-            <div class="col-md-8 data-section">
-                <p><strong>ID:</strong> <?= htmlspecialchars($data['id']); ?></p>
-                <p><strong>Nama:</strong> <?= htmlspecialchars($data['name']); ?></p>
-                <p><strong>Email:</strong> <?= htmlspecialchars($data['email']); ?></p>
-            </div>
-
-            <!-- tombol Kembali -->
-            <div class="text-end position-relative mt-3">
-                <a href="?actionView=listView" class="btn btn-secondary mt-3">Kembali</a>
-                <!-- Button untuk update pengguna -->
-                <a href="?actionView=updateView&id=<?= $data['id'] ?>" class="btn btn-warning mt-3">Edit</a>
-                <!-- Button untuk hapus data pengguna -->
-                <a href="?actionView=hapusData&id=<?= $data['id']; ?>" class="btn btn-danger mt-3" 
-                    onclick="return confirm('Apakah Anda yakin ingin menghapus data user <?= htmlspecialchars($data['name']); ?> ini?')">Hapus</a>
+            <div class="col-md-12 data-section">
+                <p><strong>ID:</strong> <?= htmlspecialchars($data['id'] ?? 'Tidak tersedia'); ?></p>
+                <p><strong>Nama:</strong> <?= htmlspecialchars($data['name'] ?? 'Tidak tersedia'); ?></p>
+                <p><strong>Email:</strong> <?= htmlspecialchars($data['email'] ?? 'Tidak tersedia'); ?></p>
+                <a href="?actionView=list" class="btn btn-secondary mt-3">Kembali</a>
+                <a href="?actionView=updateView&id=<?= $user['id'] ?>" class="btn btn-warning mt-3">Edit</a>
+                        <!-- Button untuk hapus data pengguna -->
+                        <a href="?actionView=hapusData&id=<?= $user['id']; ?>" class="btn btn-danger mt-3" 
+                        onclick="return confirm('Apakah Anda yakin ingin menghapus data user <?= htmlspecialchars($user['name']); ?> ini?')">Hapus</a>
             </div>
         </div>
     </div>

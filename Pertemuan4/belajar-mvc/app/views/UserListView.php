@@ -44,16 +44,19 @@ require_once 'app/config/proses.php';
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>No</th>
+                    <!-- <th>Id</th> -->
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
+            <?php $no = 1; // no urut data ?>
             <?php foreach ($users as $user): ?>
                 <tr>
-                    <td><?= htmlspecialchars($user['id']); ?></td>
+                    <td><?= $no++; ?></td> <!-- Menampilkan dan langsung inkrementasi -->
+                    <!-- <td><?= htmlspecialchars($user['id']); ?></td> -->
                     <td><?= htmlspecialchars($user['name']); ?></td>
                     <td><?= htmlspecialchars($user['email']); ?></td>
                     <td>
