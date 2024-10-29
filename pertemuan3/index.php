@@ -37,7 +37,7 @@ $data = $user->tampilData();
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="mb-4">Data Pengguna</h1>
+        <h1 class="mb-4">Daftar Data Pengguna</h1>
         <hr>
         <a href="input-data.php" class="btn btn-primary mb-3">Tambah Data</a>
         
