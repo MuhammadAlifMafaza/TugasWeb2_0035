@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tambah Pengguna</title>
+    <title>Tambah Data Pengguna</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="container">
-        <h1>Tambah Pengguna</h1>
+        <h1>Tambah Data Pengguna</h1>
         <form method="post" action="?actionView=simpanData">
             <div class="mb-3">
                 <label for="name" class="form-label">Nama</label>

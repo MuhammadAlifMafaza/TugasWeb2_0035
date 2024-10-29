@@ -8,7 +8,7 @@ require_once 'app/config/proses.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Daftar Pengguna</title>
+    <title>Daftar Data Pengguna</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -38,7 +38,7 @@ require_once 'app/config/proses.php';
 </head>
 <body>
     <div class="container">
-        <h1>Daftar Pengguna</h1>
+        <h1>Daftar Data Pengguna</h1>
         <!-- Button untuk form input pengguna baru -->
         <a href="?actionView=inputView" class="btn btn-primary mb-3">Tambah Pengguna</a>
         <table class="table table-striped">
