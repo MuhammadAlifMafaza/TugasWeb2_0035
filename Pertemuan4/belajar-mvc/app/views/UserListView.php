@@ -45,7 +45,6 @@ require_once 'app/config/proses.php';
             <thead>
                 <tr>
                     <th>No</th>
-                    <!-- <th>Id</th> -->
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Aksi</th>

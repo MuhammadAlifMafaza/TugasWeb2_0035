@@ -1,7 +1,7 @@
 <?php
 // User.php
 
-class Pelanggan {
+class User {
     private $db;
 
     public function __construct($db) {
@@ -9,8 +9,8 @@ class Pelanggan {
     }
 
     // Mendapatkan data pengguna berdasarkan ID
-    public function getAllPelanggan($id) {
-        $stmt = $this->db->prepare("SELECT * FROM pelanggan WHERE id = :id");
+    public function getDataById($id) {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -18,14 +18,14 @@ class Pelanggan {
 
     // Menampilkan semua data pengguna
     public function tampilData() {
-        $stmt = $this->db->prepare("SELECT id, name, email FROM pelanggan");
+        $stmt = $this->db->prepare("SELECT id, name, email FROM users");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // Method untuk menambah data pengguna
     public function tambahData($name, $email) {
-        $query = "INSERT pelanggan VALUES (:name, :email)";
+        $query = "INSERT INTO users (name, email) VALUES (:name, :email)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
@@ -34,7 +34,7 @@ class Pelanggan {
 
     // Method untuk update data pengguna
     public function editData($id, $name, $email) {
-        $query = "UPDATE pelanggan SET name = :name, email = :email WHERE id = :id";
+        $query = "UPDATE users SET name = :name, email = :email WHERE id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':name', $name);
@@ -44,7 +44,7 @@ class Pelanggan {
 
     // menghapus data pengguna
     public function hapusData($id) {
-        $query = "DELETE FROM pelanggan WHERE id = :id";
+        $query = "DELETE FROM users WHERE id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id);
         return $stmt->execute();

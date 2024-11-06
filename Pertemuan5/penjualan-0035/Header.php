@@ -1,3 +1,4 @@
+<!-- Header -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +10,12 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="index.php">Sistem Penjualan</a>
+            <h4>Sistem Belanja</h4>
             <div class="navbar-nav">
-                <a class="nav-link" href="barang.php">Barang</a>
-                <a class="nav-link" href="pelanggan.php">Pelanggan</a>
-                <a class="nav-link" href="transaksi.php">Transaksi</a>
+                <li><a class="navbar-brand" href="index.php">Home</a></li>
+                <li><a class="nav-link" href="barang.php">Barang</a></li>
+                <li><a class="nav-link" href="pelanggan.php">Pelanggan</a></li>
+                <li><a class="nav-link" href="transaksi.php">Transaksi</a></li>
             </div>
         </div>
     </nav>
