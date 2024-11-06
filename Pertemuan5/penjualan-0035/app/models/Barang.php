@@ -8,10 +8,10 @@ class Barang {
         $this->db = $db;
     }
 
-    // Mendapatkan data barang berdasarkan ID
-    public function getBarangById($id) {
-        $stmt = $this->db->prepare("SELECT * FROM barang WHERE id = :id");
-        $stmt->bindParam(':id', $id);
+    // Mendapatkan data barang berdasarkan kode_barang
+    public function getBarangBykode_barang($kode_barang) {
+        $stmt = $this->db->prepare("SELECT * FROM barang WHERE kode_barang = :kode_barang");
+        $stmt->bindParam(':kode_barang', $kode_barang);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -24,9 +24,10 @@ class Barang {
     }
 
     // Menambah data barang
-    public function tambahBarang($namaBarang, $harga, $stok) {
-        $query = "INSERT INTO barang (nama_barang, harga, stok) VALUES (:nama_barang, :harga, :stok)";
+    public function tambahBarang($kodeBarang, $namaBarang, $harga, $stok) {
+        $query = "INSERT INTO barang (kode_barang, nama_barang, harga, stok) VALUES (:kode_barang, :nama_barang, :harga, :stok)";
         $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':kode_barang', $kodeBarang);
         $stmt->bindParam(':nama_barang', $namaBarang);
         $stmt->bindParam(':harga', $harga);
         $stmt->bindParam(':stok', $stok);
@@ -34,10 +35,10 @@ class Barang {
     }
 
     // Update data barang
-    public function editBarang($id, $namaBarang, $harga, $stok) {
-        $query = "UPDATE barang SET nama_barang = :nama_barang, harga = :harga, stok = :stok WHERE id = :id";
+    public function editBarang($kode_barang, $namaBarang, $harga, $stok) {
+        $query = "UPDATE barang SET nama_barang = :nama_barang, harga = :harga, stok = :stok WHERE kode_barang = :kode_barang";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':kode_barang', $kode_barang);
         $stmt->bindParam(':nama_barang', $namaBarang);
         $stmt->bindParam(':harga', $harga);
         $stmt->bindParam(':stok', $stok);
@@ -45,10 +46,10 @@ class Barang {
     }
 
     // Hapus data barang
-    public function hapusBarang($id) {
-        $query = "DELETE FROM barang WHERE id = :id";
+    public function hapusBarang($kode_barang) {
+        $query = "DELETE FROM barang WHERE kode_barang = :kode_barang";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':kode_barang', $kode_barang);
         return $stmt->execute();
     }
 }

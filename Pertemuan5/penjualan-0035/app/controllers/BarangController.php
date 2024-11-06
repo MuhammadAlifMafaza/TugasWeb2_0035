@@ -9,43 +9,42 @@ class BarangController {
         $this->barangModel = new Barang($dbConnection);
     }
 
-    public function show($id) {
-        return $this->barangModel->getBarangById($id);
+    public function show($kodeBarang) {
+        return $this->barangModel->getBarangBykode_barang($kodeBarang);
     }
 
     public function getAllBarang() {
-        // Ambil semua barang tanpa mengembalikan data
+        // Ambil semua barang
         $barangList = $this->barangModel->tampilBarang();
         
-        // Redirect ke halaman barang list view
-        header("Location: app/views/Barang/BarangListView.php");
-        exit();
+        // Include the view and pass the data
+        include 'app/views/Barang/BarangListView.php';
     }
 
-    public function addBarang($namaBarang, $harga, $stok) {
+    public function addBarang($kodeBarang, $namaBarang, $harga, $stok) {
         // Tetap memanggil method untuk menambah barang
-        $this->barangModel->tambahBarang($namaBarang, $harga, $stok);
+        $this->barangModel->tambahBarang($kodeBarang, $namaBarang, $harga, $stok);
 
         // Redirect ke halaman barang list view setelah tambah barang
-        header("Location: app/views/Barang/BarangListView.php");
+        header("Location: ?actionBarang=getAllBarang");
         exit();
     }
 
-    public function updateBarang($id, $namaBarang, $harga, $stok) {
+    public function updateBarang($kode_barang, $namaBarang, $harga, $stok) {
         // Tetap memanggil method untuk mengupdate barang
-        $this->barangModel->editBarang($id, $namaBarang, $harga, $stok);
+        $this->barangModel->editBarang($kode_barang, $namaBarang, $harga, $stok);
 
         // Redirect ke halaman barang list view setelah update barang
-        header("Location: app/views/Barang/BarangListView.php");
+        header("Location: ?actionBarang=getAllBarang");
         exit();
     }
 
-    public function deleteBarang($id) {
+    public function deleteBarang($kode_barang) {
         // Tetap memanggil method untuk menghapus barang
-        $this->barangModel->hapusBarang($id);
+        $this->barangModel->hapusBarang($kode_barang);
 
         // Redirect ke halaman barang list view setelah hapus barang
-        header("Location: app/views/Barang/BarangListView.php");
+        header("Location: ?actionBarang=getAllBarang");
         exit();
     }
 }

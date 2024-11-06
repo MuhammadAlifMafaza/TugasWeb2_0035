@@ -39,7 +39,7 @@ switch ($actionBarang) {
             $nama_barang = $_POST['nama_barang'];
             $harga = $_POST['harga'];
             $stok = $_POST['stok'];
-            $controllerBarang->addBarang($nama_barang, $harga, $stok);
+            $controllerBarang->addBarang($kodeBarang,$nama_barang, $harga, $stok);
         }
         header('Location: ?actionBarang=listView');
         exit;
@@ -48,7 +48,7 @@ switch ($actionBarang) {
         if ($id) {
             $controllerBarang->deleteBarang($id);
         }
-        header('Location: ?actionBarang=listView');
+        header('Location: ?actionBarang=BarangListView');
         exit;
 }
 ?>
