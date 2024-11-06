@@ -15,6 +15,7 @@ class BarangController {
 
     public function getAllBarang() {
         $barangList = $this->barangModel->tampilBarang();
+        // Kirim data barang ke view
         include 'app/views/Barang/BarangListView.php';
     }
 

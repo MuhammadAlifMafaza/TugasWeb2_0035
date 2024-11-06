@@ -1,3 +1,19 @@
+<?php
+// Memasukkan koneksi dan kelas Barang
+include 'database.php';
+include 'Barang.php';
+
+// Membuat objek koneksi database
+$db = getDBConnection();
+
+// Membuat objek kelas Barang
+$barangObj = new Barang($db);
+
+// Mendapatkan data barang
+$barang = $barangObj->tampilBarang();
+?>
+
+<!-- BarangListView.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +54,7 @@
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
-                <tr><td colspan="5">Tidak ada data barang.</td></tr>
+                <tr><td colspan="6">Tidak ada data barang.</td></tr>
             <?php endif; ?>
             </tbody>
         </table>
