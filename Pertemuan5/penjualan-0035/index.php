@@ -1,18 +1,14 @@
 <?php
 // Menggabungkan file header, home, dan footer
-include 'header.php'; 
 include 'home.php'; 
-include 'footer.php';
 
 // Mengatur koneksi database
 require_once 'app/config/database.php';
 $dbConnection = getDBConnection();
 
-// Inisialisasi controller
+// Main routing logic
 require_once 'app/controllers/BarangController.php';
 $controllerBarang = new BarangController($dbConnection);
-
-// Memeriksa parameter 'actionBarang'
 $actionBarang = isset($_GET['actionBarang']) ? $_GET['actionBarang'] : 'listView';
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
@@ -36,10 +32,11 @@ switch ($actionBarang) {
 
     case 'simpanData':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $kodeBarang = $_POST['kode_barang'];
             $nama_barang = $_POST['nama_barang'];
             $harga = $_POST['harga'];
             $stok = $_POST['stok'];
-            $controllerBarang->addBarang($kodeBarang,$nama_barang, $harga, $stok);
+            $controllerBarang->addBarang($kodeBarang, $nama_barang, $harga, $stok);
         }
         header('Location: ?actionBarang=listView');
         exit;
@@ -48,10 +45,11 @@ switch ($actionBarang) {
         if ($id) {
             $controllerBarang->deleteBarang($id);
         }
-        header('Location: ?actionBarang=BarangListView');
+        header('Location: ?actionBarang=listView');
         exit;
 }
 ?>
+
 
 switch ($actionPelanggan) {
     case 'inputView':

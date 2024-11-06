@@ -46,18 +46,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <h1>Update Data Pengguna</h1>
-        <form method="post" action="?actionView=simpanUpdate">
-            <input type="hidden" class="form-control" id="id" name="id" value="<?= htmlspecialchars($user['id']); ?>" required>
+        <form method="post" action="?actionBarang=simpanUpdate">
+            <input type="hidden" class="form-control" id="kode_barang" name="kode_barang" value="<?= htmlspecialchars($barang['kode_barang']); ?>" required>
             <div class="mb-3">
-                <label for="name" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="name" name="name" value="<?= htmlspecialchars($user['name']); ?>" required>
+                <label for="nama_barang" class="form-label">Nama Barang</label>
+                <input type="text" class="form-control" id="nama_barang" name="nama_barang" value="<?= htmlspecialchars($barang['nama_barang']); ?>" required>
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?= htmlspecialchars($user['email']); ?>" required>
+                <label for="harga" class="form-label">Harga</label>
+                <input type="number" class="form-control" id="harga" name="harga" value="<?= htmlspecialchars($barang['harga']); ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="stok" class="form-label">Stok</label>
+                <input type="number" class="form-control" id="stok" name="stok" value="<?= htmlspecialchars($barang['stok']); ?>" required>
             </div>
             <button type="submit" class="btn btn-warning">Simpan</button>
-            <a href="?actionView=listView" class="btn btn-secondary">Kembali</a>
+            <a href="?actionBarang=listView" class="btn btn-secondary">Kembali</a>
         </form>
     </div>
 </body>

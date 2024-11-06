@@ -14,36 +14,27 @@ class BarangController {
     }
 
     public function getAllBarang() {
-        // Ambil semua barang
         $barangList = $this->barangModel->tampilBarang();
-        
-        // Include the view and pass the data
         include 'app/views/Barang/BarangListView.php';
     }
 
     public function addBarang($kodeBarang, $namaBarang, $harga, $stok) {
-        // Tetap memanggil method untuk menambah barang
+        // Add barang
         $this->barangModel->tambahBarang($kodeBarang, $namaBarang, $harga, $stok);
-
-        // Redirect ke halaman barang list view setelah tambah barang
         header("Location: ?actionBarang=getAllBarang");
         exit();
     }
 
     public function updateBarang($kode_barang, $namaBarang, $harga, $stok) {
-        // Tetap memanggil method untuk mengupdate barang
+        // Update barang
         $this->barangModel->editBarang($kode_barang, $namaBarang, $harga, $stok);
-
-        // Redirect ke halaman barang list view setelah update barang
         header("Location: ?actionBarang=getAllBarang");
         exit();
     }
 
     public function deleteBarang($kode_barang) {
-        // Tetap memanggil method untuk menghapus barang
+        // Delete barang
         $this->barangModel->hapusBarang($kode_barang);
-
-        // Redirect ke halaman barang list view setelah hapus barang
         header("Location: ?actionBarang=getAllBarang");
         exit();
     }
