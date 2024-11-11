@@ -1,50 +1,37 @@
 <?php
-// Menggabungkan file header dan tampilan home
-include 'views/home/home.php'; 
+// keterlibatan file yang diperlukan
+require_once 'app/controllers/HomeController.php';
+require_once 'app/controllers/BarangController.php';
+require_once 'app/controllers/PelangganController.php';
+require_once 'app/controllers/TransaksiController.php';
+require_once 'app/models/Barang.php';
+require_once 'app/models/Pelanggan.php';
+require_once 'app/models/Transaksi.php';
 
 // Mengatur koneksi database
 require_once 'app/config/database.php';
 $dbConnection = getDBConnection();
 
-// Main routing logic
-require_once 'app/controllers/BarangController.php';
-$controllerBarang = new BarangController($dbConnection);
-$actionBarang = isset($_GET['actionBarang']) ? $_GET['actionBarang'] : 'listView';
-$id = isset($_GET['id']) ? $_GET['id'] : null;
+// Memeriksa parameter 'page' atau pengatur halaman
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';
+$action = isset($_GET['action']) ? $_GET['action'] : 'index';
 
-switch ($actionBarang) {
-    case 'inputView':
-        require 'app/views/Barang/BarangInputView.php';
+switch ($page) {
+    case 'home':
+        $controller = new HomeController($db);
         break;
-
-    case 'updateView':
-        if ($id) {
-            $barang = $controllerBarang->show($id);
-        }
-        require 'app/views/Barang/BarangUpdateView.php';
+    case 'barang':
+        $controller = new BarangController($db);
         break;
-
-    case 'listView':
-    default:
-        $barang = $controllerBarang->getAllBarang();
+    case 'pelanggan':
+        $controller = new PelangganController($db);
         break;
-
-    case 'simpanData':
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $kodeBarang = $_POST['kode_barang'];
-            $nama_barang = $_POST['nama_barang'];
-            $harga = $_POST['harga'];
-            $stok = $_POST['stok'];
-            $controllerBarang->addBarang($kodeBarang, $nama_barang, $harga, $stok);
-        }
-        header('Location: ?actionBarang=listView');
-        exit;
-
-    case 'hapusData':
-        if ($id) {
-            $controllerBarang->deleteBarang($id);
-        }
-        header('Location: ?actionBarang=listView');
-        exit;
+    case 'transaksi':
+        $controller = new TransaksiController($db);
+        break;
+    default :
+        $controller = new HomeController($db);
 }
+
+$controller->$action();
 ?>

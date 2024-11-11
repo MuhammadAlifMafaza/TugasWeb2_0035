@@ -42,7 +42,6 @@ switch ($actionView) {
         $email = $_POST['email'];
         $controller->addUser($name, $email); // Simpan data pengguna baru
     }
-    header('Location: ?actionView=list'); // Redirect ke daftar pengguna
     exit;
 
     case 'simpanUpdate':
@@ -52,15 +51,13 @@ switch ($actionView) {
         $email = $_POST['email'];
         $controller->updateUser($id, $name, $email); // Update data pengguna
     }
-    header('Location: ?actionView=list'); // Redirect ke daftar pengguna
     exit;
 
     case 'hapusData':
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $controller->deleteUser($id); // Memanggil fungsi hapus pengguna
-        }
-        header('Location: ?actionView=list'); // Redirect ke daftar pengguna
+        }    
         exit;    
 }
 ?>

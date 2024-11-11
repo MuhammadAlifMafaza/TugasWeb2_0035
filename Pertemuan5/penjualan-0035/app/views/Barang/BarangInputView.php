@@ -26,7 +26,7 @@
                 <input type="number" class="form-control" id="stok" name="stok" required>
             </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
-            <a href="?actionBarang=listView" class="btn btn-secondary">Kembali</a>
+            <a href="?actionBarang=listBarang" class="btn btn-secondary">Kembali</a>
         </form>
     </div>
 </body>

@@ -10,31 +10,31 @@ class BarangController {
     }
 
     public function show($kodeBarang) {
-        return $this->barangModel->getBarangBykode_barang($kodeBarang);
+        // Mengembalikan data barang ke router utama
+        return $this->barangModel->getBarangByKode($kodeBarang);
     }
 
     public function getAllBarang() {
-        $barangList = $this->barangModel->tampilBarang();
-        // Kirim data barang ke view
-        include 'app/views/Barang/BarangListView.php';
+        // Mengembalikan daftar barang ke router utama
+        return $this->barangModel->tampilBarang();
     }
 
     public function addBarang($kodeBarang, $namaBarang, $harga, $stok) {
-        // Add barang
+        // Menambahkan data barang
         $this->barangModel->tambahBarang($kodeBarang, $namaBarang, $harga, $stok);
         header("Location: ?actionBarang=getAllBarang");
         exit();
     }
 
     public function updateBarang($kode_barang, $namaBarang, $harga, $stok) {
-        // Update barang
+        // Mengupdate data barang
         $this->barangModel->editBarang($kode_barang, $namaBarang, $harga, $stok);
         header("Location: ?actionBarang=getAllBarang");
         exit();
     }
 
     public function deleteBarang($kode_barang) {
-        // Delete barang
+        // Menghapus data barang
         $this->barangModel->hapusBarang($kode_barang);
         header("Location: ?actionBarang=getAllBarang");
         exit();

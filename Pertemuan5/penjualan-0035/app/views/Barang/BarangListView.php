@@ -1,18 +1,3 @@
-<?php
-// Memasukkan koneksi dan kelas Barang
-include 'database.php';
-include 'Barang.php';
-
-// Membuat objek koneksi database
-$db = getDBConnection();
-
-// Membuat objek kelas Barang
-$barangObj = new Barang($db);
-
-// Mendapatkan data barang
-$barang = $barangObj->tampilBarang();
-?>
-
 <!-- BarangListView.php -->
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +9,7 @@ $barang = $barangObj->tampilBarang();
 <body>
     <div class="container">
         <h1>Daftar Barang</h1>
-        <a href="?actionBarang=inputView" class="btn btn-primary mb-3">Tambah Barang</a>
+        <a href="?actionBarang=inputBarang" class="btn btn-primary mb-3">Tambah Barang</a>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -47,8 +32,8 @@ $barang = $barangObj->tampilBarang();
                         <td><?= htmlspecialchars($item['harga']); ?></td>
                         <td><?= htmlspecialchars($item['stok']); ?></td>
                         <td>
-                            <a href="?actionBarang=updateView&id=<?= $item['kode_barang'] ?>" class="btn btn-warning">Edit</a>
-                            <a href="?actionBarang=hapusData&id=<?= $item['kode_barang']; ?>" class="btn btn-danger"
+                            <a href="?actionBarang=updateBarang&kode_barang=<?= $item['kode_barang'] ?>" class="btn btn-warning">Edit</a>
+                            <a href="?actionBarang=hapusData&kode_barang=<?= $item['kode_barang']; ?>" class="btn btn-danger"
                                onclick="return confirm('Apakah Anda yakin ingin menghapus data barang ini?')">Hapus</a>
                         </td>
                     </tr>

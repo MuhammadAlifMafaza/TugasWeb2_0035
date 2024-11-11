@@ -9,7 +9,7 @@ class Barang {
     }
 
     // Mendapatkan data barang berdasarkan kode_barang
-    public function getBarangBykode_barang($kode_barang) {
+    public function getBarangByKode($kode_barang) {
         $stmt = $this->db->prepare("SELECT * FROM barang WHERE kode_barang = :kode_barang");
         $stmt->bindParam(':kode_barang', $kode_barang);
         $stmt->execute();

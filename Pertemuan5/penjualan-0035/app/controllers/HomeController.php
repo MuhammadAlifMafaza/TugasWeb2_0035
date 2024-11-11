@@ -1,7 +1,12 @@
-<?php 
-    class HomeController {
-        function index(){
-            require 'app/views/beranda.php';
-        }
+<?php
+class HomeController {
+    private $db;
+
+    public function __construct($db) {
+        $this->db = $db;
     }
-?>
+
+    public function index() {
+        include 'views/Home/Home.php';
+    }
+}

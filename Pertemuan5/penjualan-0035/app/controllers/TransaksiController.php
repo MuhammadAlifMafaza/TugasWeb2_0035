@@ -1,7 +1,7 @@
 <?php
 require_once 'app/models/User.php';
 
-class UserController {
+class TransaksiController {
     public $userModel;
 
     public function __construct($dbConnection) {
