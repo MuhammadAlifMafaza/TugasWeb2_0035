@@ -1,7 +1,7 @@
 <?php
 // User.php
 
-class User {
+class Pelanggan {
     private $db;
 
     public function __construct($db) {

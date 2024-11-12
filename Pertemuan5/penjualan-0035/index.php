@@ -18,19 +18,19 @@ $action = isset($_GET['action']) ? $_GET['action'] : 'index';
 
 switch ($page) {
     case 'home':
-        $controller = new HomeController($db);
+        $controller = new HomeController($dbConnection);
         break;
     case 'barang':
-        $controller = new BarangController($db);
+        $controller = new BarangController($dbConnection);
         break;
     case 'pelanggan':
-        $controller = new PelangganController($db);
+        $controller = new PelangganController($dbConnection);
         break;
     case 'transaksi':
-        $controller = new TransaksiController($db);
+        $controller = new TransaksiController($dbConnection);
         break;
     default :
-        $controller = new HomeController($db);
+        $controller = new HomeController($dbConnection);
 }
 
 $controller->$action();

@@ -1,7 +1,7 @@
 <?php
 // User.php
 
-class User {
+class Transaksi {
     private $db;
 
     public function __construct($db) {

@@ -7,6 +7,6 @@ class HomeController {
     }
 
     public function index() {
-        include 'views/Home/Home.php';
+        include 'app/views/Home/Home.php';
     }
 }
