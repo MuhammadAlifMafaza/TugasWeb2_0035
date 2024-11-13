@@ -7,6 +7,11 @@
 </head>
 <body>
     <div class="container">
+    <?php if (isset($_GET['error']) && $_GET['error'] == 'duplicate'): ?>
+        <div class="alert alert-danger" role="alert">
+            Kode barang <strong><?= htmlspecialchars($_GET['kode_barang']); ?></strong> yang dimasukkan sudah ada. Silakan gunakan kode yang berbeda.
+        </div>
+    <?php endif; ?>
         <br><h1>Tambah Data Barang</h1><hr>
         <form method="post" action="?page=barang&action=simpan">
             <div class="mb-3">

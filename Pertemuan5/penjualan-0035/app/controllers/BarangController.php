@@ -30,16 +30,23 @@ class BarangController {
     }
 
     public function simpan() {
-        // Menyimpan barang baru ke database
         $kodeBarang = $_POST['kode_barang'];
         $namaBarang = $_POST['nama_barang'];
         $harga = $_POST['harga'];
         $stok = $_POST['stok'];
-
-        $this->barangModel->tambahBarang($kodeBarang, $namaBarang, $harga, $stok);
-        header("Location: ?page=barang&action=index");
+    
+        try {
+            // Panggil metode tambahBarang pada model
+            $this->barangModel->tambahBarang($kodeBarang, $namaBarang, $harga, $stok);
+            // Redirect ke halaman index barang setelah berhasil menambah data
+            header("Location: ?page=barang&action=index");
+        } catch (Exception $e) {
+            // Jika terjadi duplikasi, arahkan kembali ke input form dengan pesan error
+            header("Location: ?page=barang&action=addBarang&error=duplicate");
+        }
         exit();
     }
+    
 
     public function edit() {
         // Tampilkan form edit barang

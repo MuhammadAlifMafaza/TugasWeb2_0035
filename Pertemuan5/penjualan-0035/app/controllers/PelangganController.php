@@ -31,12 +31,19 @@ class PelangganController {
     public function simpan() {
         // Menyimpan Pelanggan baru ke database
         $IdPelanggan = $_POST['id_pelanggan'];
-        $namaPelanggan = $_POST['nama_Pelanggan'];
-        $harga = $_POST['harga'];
-        $stok = $_POST['stok'];
-
-        $this->pelangganModel->tambahPelanggan($IdPelanggan, $namaPelanggan, $harga, $stok);
-        header("Location: ?page=Pelanggan&action=index");
+        $namaPelanggan = $_POST['nama_pelanggan'];
+        $alamat = $_POST['alamat'];
+        $email = $_POST['email'];
+        $telepon = $_POST['telepon'];
+        try {
+            // Panggil metode tambahPelanggan pada model
+            $this->pelangganModel->tambahPelanggan($IdPelanggan, $namaPelanggan, $alamat, $email, $telepon);
+            // Redirect ke halaman index Pelanggan setelah berhasil menambah data
+            header("Location: ?page=pelanggan&action=index");
+        } catch (Exception $e) {
+            // Jika terjadi duplikasi, arahkan kembali ke input form dengan pesan error
+            header("Location: ?page=pelanggan&action=addPelanggan&error=duplicate");
+        }
         exit();
     }
 
@@ -52,11 +59,11 @@ class PelangganController {
     public function update() {
         // Mengupdate data Pelanggan di database
         $IdPelanggan = $_POST['id_pelanggan'];
-        $namaPelanggan = $_POST['nama_Pelanggan'];
-        $harga = $_POST['harga'];
-        $stok = $_POST['stok'];
-
-        $this->pelangganModel->editPelanggan($IdPelanggan, $namaPelanggan, $harga, $stok);
+        $namaPelanggan = $_POST['nama_pelanggan'];
+        $alamat = $_POST['alamat'];
+        $email = $_POST['email'];
+        $telepon = $_POST['telepon'];
+        $this->pelangganModel->editPelanggan($IdPelanggan, $namaPelanggan, $alamat, $email, $telepon);
         header("Location: ?page=Pelanggan&action=index");
         exit();
     }

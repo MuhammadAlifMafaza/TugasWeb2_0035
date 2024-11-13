@@ -35,7 +35,7 @@
                         <td>
                             <a href="?page=barang&action=edit&kode_barang=<?= $item['kode_barang'] ?>" class="btn btn-warning">Edit</a>
                             <a href="?page=barang&action=delete&kode_barang=<?= $item['kode_barang']; ?>" class="btn btn-danger"
-                               onclick="return confirm('Apakah Anda yakin ingin menghapus data barang <? $item['nama_barang'] ?> ini?')">Hapus</a>
+                            onclick="return confirm('Apakah Anda yakin ingin menghapus data Barang <?= htmlspecialchars($item['nama_barang']); ?> ini?')">Hapus</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

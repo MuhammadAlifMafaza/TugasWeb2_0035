@@ -1,32 +1,38 @@
-<?php include 'app/views/layout/Header.php'; ?><!DOCTYPE html>
+<!-- PelangganUpdateView.php -->
+<?php include 'app/views/layout/Header.php'; ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update Data Barang</title>
+    <title>Update Data Pelanggan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <br><h1>Update Data Barang</h1><hr>
-        <form method="post" action="?page=barang&action=update&kode_barang=<?= htmlspecialchars($barang['kode_barang']); ?>">
+        <br><h1>Update Data Pelanggan</h1><hr>
+        <form method="post" action="?page=pelanggan&action=update&id_pelanggan=<?= htmlspecialchars($Pelanggan['id_pelanggan']); ?>">
             <div class="mb-3">
-                <label for="kode_barang" class="form-label">Kode Barang</label>
-                <input type="text" class="form-control" id="kode_barang" name="kode_barang" value="<?= htmlspecialchars($barang['kode_barang']); ?>" readonly>
+                <label for="id_pelanggan" class="form-label">Id Pelanggan</label>
+                <input type="text" class="form-control" id="id_pelanggan" name="id_pelanggan" value="<?= htmlspecialchars($Pelanggan['id_pelanggan']); ?>" readonly>
             </div>
             <div class="mb-3">
-                <label for="nama_barang" class="form-label">Nama Barang</label>
-                <input type="text" class="form-control" id="nama_barang" name="nama_barang" value="<?= htmlspecialchars($barang['nama_barang']); ?>" required>
+                <label for="nama_pelanggan" class="form-label">Nama Pelanggan</label>
+                <input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" value="<?= htmlspecialchars($Pelanggan['nama_pelanggan']); ?>" required>
             </div>
             <div class="mb-3">
-                <label for="harga" class="form-label">Harga</label>
-                <input type="number" class="form-control" id="harga" name="harga" value="<?= htmlspecialchars($barang['harga']); ?>" required>
+                <label for="alamat" class="form-label">Alamat</label>
+                <input type="text" class="form-control" id="alamat" name="alamat" value="<?= htmlspecialchars($Pelanggan['alamat']); ?>" required>
             </div>
             <div class="mb-3">
-                <label for="stok" class="form-label">Stok</label>
-                <input type="number" class="form-control" id="stok" name="stok" value="<?= htmlspecialchars($barang['stok']); ?>" required>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="<?= htmlspecialchars($Pelanggan['email']); ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="telepon" class="form-label">Telepon</label>
+                <input type="number" class="form-control" id="telepon" name="telepon" value="<?= htmlspecialchars($Pelanggan['telepon']); ?>" required>
             </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
-            <a href="?page=barang" class="btn btn-secondary">Kembali</a>
+            <a href="?page=pelanggan" class="btn btn-secondary">Kembali</a>
         </form>
     </div>
 </body>
