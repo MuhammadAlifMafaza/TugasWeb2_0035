@@ -1,74 +1,71 @@
 <?php
-// BarangController.php
-require_once 'app/models/Barang.php';
+// TransaksiController.php
+require_once 'app/models/Transaksi.php';
 
 class TransaksiController {
-    private $barangModel;
+    private $transaksiModel;
 
     public function __construct($dbConnection) {
-        $this->barangModel = new Barang($dbConnection);
+        $this->transaksiModel = new Transaksi($dbConnection);
     }
 
     public function index() {
-        // Cek apakah ada kode_barang di URL untuk detail barang
-        $kodeBarang = isset($_GET['kode_barang']) ? $_GET['kode_barang'] : null;
+        // Cek apakah ada id_transaksi di URL untuk detail Transaksi
+        $idTransaksi = isset($_GET['id_transaksi']) ? $_GET['id_transaksi'] : null;
 
-        if ($kodeBarang) {
-            // Jika kode barang ada, ambil data barang spesifik
-            $barang = $this->barangModel->getBarangByKode($kodeBarang);
-            include_once 'app/views/Barang/BarangDetailView.php'; // View untuk detail barang
+        if ($idTransaksi) {
+            // Jika id_transaksi ada, ambil data Transaksi spesifik
+            $transaksi = $this->transaksiModel->getTransaksiById($idTransaksi);
+            include_once 'app/views/Transaksi/TransaksiDetailView.php'; // View untuk detail Transaksi
         } else {
-            // Jika tidak ada kode barang, tampilkan semua barang
-            $barang = $this->barangModel->tampilBarang();
-            include_once 'app/views/Barang/BarangListView.php'; // View untuk daftar barang
+            // Jika tidak ada id_transaksi, tampilkan semua Transaksi
+            $transaksiList = $this->transaksiModel->tampilTransaksi();
+            include_once 'app/views/Transaksi/TransaksiListView.php'; // View untuk daftar Transaksi
         }
     }
 
-    public function addBarang() {
-        // Tampilkan form untuk tambah barang
-        include_once 'app/views/Barang/BarangInputView.php';
+    public function addTransaksi() {
+        // Tampilkan form untuk tambah Transaksi
+        include_once 'app/views/Transaksi/TransaksiInputView.php';
     }
 
     public function simpan() {
-        // Menyimpan barang baru ke database
+        // Ambil data dari form POST
         $kodeBarang = $_POST['kode_barang'];
-        $namaBarang = $_POST['nama_barang'];
+        $idPelanggan = $_POST['id_pelanggan'];
+        $jumlah = $_POST['jumlah'];
         $harga = $_POST['harga'];
-        $stok = $_POST['stok'];
-
-        $this->barangModel->tambahBarang($kodeBarang, $namaBarang, $harga, $stok);
-        header("Location: ?page=barang&action=index");
+        $tanggal = $_POST['tanggal'];
+    
+        // Hitung total harga
+        $totalHarga = $jumlah * $harga;
+    
+        try {
+            // Panggil metode tambahTransaksi pada model
+            $this->transaksiModel->tambahTransaksi($kodeBarang, $idPelanggan, $jumlah, $totalHarga, $tanggal);
+            // Redirect ke halaman index Transaksi setelah berhasil menambah data
+            header("Location: ?page=transaksi&action=index");
+        } catch (Exception $e) {
+            // Jika terjadi error, arahkan kembali ke form input dengan pesan error
+            header("Location: ?page=transaksi&action=addTransaksi&error=duplicate");
+        }
         exit();
     }
-
-    public function edit() {
-        // Tampilkan form edit barang
-        $kodeBarang = isset($_GET['kode_barang']) ? $_GET['kode_barang'] : null;
-        if ($kodeBarang) {
-            $barang = $this->barangModel->getBarangByKode($kodeBarang);
-            include_once 'app/views/Barang/BarangUpdateView.php';
+    
+    public function detail() {
+        // Ambil id_transaksi dari URL
+        $idTransaksi = isset($_GET['id_transaksi']) ? $_GET['id_transaksi'] : null;
+    
+        if ($idTransaksi) {
+            // Ambil data transaksi berdasarkan id_transaksi
+            $transaksi = $this->transaksiModel->getTransaksiById($idTransaksi);
+            // Tampilkan view detail transaksi
+            include_once 'app/views/Transaksi/TransaksiDetailView.php';
+        } else {
+            // Jika tidak ada id_transaksi, redirect ke daftar transaksi
+            header("Location: ?page=transaksi&action=index");
         }
     }
-
-    public function update() {
-        // Mengupdate data barang di database
-        $kodeBarang = $_POST['kode_barang'];
-        $namaBarang = $_POST['nama_barang'];
-        $harga = $_POST['harga'];
-        $stok = $_POST['stok'];
-
-        $this->barangModel->editBarang($kodeBarang, $namaBarang, $harga, $stok);
-        header("Location: ?page=barang&action=index");
-        exit();
-    }
-
-    public function delete() {
-        // Menghapus data barang dari database
-        $kodeBarang = isset($_GET['kode_barang']) ? $_GET['kode_barang'] : null;
-        if ($kodeBarang) {
-            $this->barangModel->hapusBarang($kodeBarang);
-            header("Location: ?page=barang&action=index");
-            exit();
-        }
-    }
+    
 }
+?>

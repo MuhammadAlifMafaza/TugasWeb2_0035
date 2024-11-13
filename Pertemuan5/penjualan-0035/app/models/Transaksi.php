@@ -1,5 +1,5 @@
 <?php
-// User.php
+// models/Transaksi.php
 
 class Transaksi {
     private $db;
@@ -8,49 +8,49 @@ class Transaksi {
         $this->db = $db;
     }
 
-    // Mendapatkan data barang berdasarkan id_transaksi
-    public function getBarangByKode($id_transaksi) {
-        $stmt = $this->db->prepare("SELECT * FROM barang WHERE id_transaksi = :id_transaksi");
+    // Mendapatkan data transaksi berdasarkan id_transaksi
+    public function getTransaksiById($id_transaksi) {
+        $stmt = $this->db->prepare("SELECT * FROM transaksi WHERE id_transaksi = :id_transaksi");
         $stmt->bindParam(':id_transaksi', $id_transaksi);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC); // Mengembalikan hasil transaksi atau null jika tidak ditemukan
     }
-
-    // Menampilkan semua data barang
-    public function tampilBarang() {
-        $stmt = $this->db->prepare("SELECT * FROM barang");
+    
+    // Menampilkan semua data transaksi
+    public function tampilTransaksi() {
+        $stmt = $this->db->prepare("SELECT id_transaksi, kode_barang, id_pelanggan, jumlah, total_harga, tanggal FROM transaksi");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Menambah data barang
-    public function tambahBarang($kodeBarang, $namaBarang, $harga, $stok) {
-        $query = "INSERT INTO barang (id_transaksi, nama_barang, harga, stok) VALUES (:id_transaksi, :nama_barang, :harga, :stok)";
+    // Mengidentifikasi apakah kode barang sudah ada dalam transaksi tertentu
+    public function transaksiExists($kodeBarang) {
+        $stmt = $this->db->prepare("SELECT COUNT(*) FROM transaksi WHERE kode_barang = :kode_barang");
+        $stmt->bindParam(':kode_barang', $kodeBarang);
+        $stmt->execute();
+        return $stmt->fetchColumn() > 0;
+    }
+
+    // Menambahkan transaksi baru
+    public function tambahTransaksi($kodeBarang, $idPelanggan, $jumlah, $harga, $tanggal) {
+        // Cek apakah transaksi dengan kode barang ini sudah ada
+        if ($this->transaksiExists($kodeBarang)) {
+            throw new Exception("Kode barang '$kodeBarang' sudah ada dalam transaksi. Silakan gunakan kode yang berbeda.");
+        }
+
+        // Hitung total_harga berdasarkan jumlah dan harga barang
+        $totalHarga = $jumlah * $harga;
+
+        $query = "INSERT INTO transaksi (kode_barang, id_pelanggan, jumlah, total_harga, tanggal) 
+                  VALUES (:kode_barang, :id_pelanggan, :jumlah, :total_harga, :tanggal)";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':id_transaksi', $kodeBarang);
-        $stmt->bindParam(':nama_barang', $namaBarang);
-        $stmt->bindParam(':harga', $harga);
-        $stmt->bindParam(':stok', $stok);
+        $stmt->bindParam(':kode_barang', $kodeBarang);
+        $stmt->bindParam(':id_pelanggan', $idPelanggan);
+        $stmt->bindParam(':jumlah', $jumlah);
+        $stmt->bindParam(':total_harga', $totalHarga);
+        $stmt->bindParam(':tanggal', $tanggal);
         return $stmt->execute();
     }
 
-    // Update data barang
-    public function editBarang($id_transaksi, $namaBarang, $harga, $stok) {
-        $query = "UPDATE barang SET nama_barang = :nama_barang, harga = :harga, stok = :stok WHERE id_transaksi = :id_transaksi";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':id_transaksi', $id_transaksi);
-        $stmt->bindParam(':nama_barang', $namaBarang);
-        $stmt->bindParam(':harga', $harga);
-        $stmt->bindParam(':stok', $stok);
-        return $stmt->execute();
-    }
-
-    // Hapus data barang
-    public function hapusBarang($id_transaksi) {
-        $query = "DELETE FROM barang WHERE id_transaksi = :id_transaksi";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':id_transaksi', $id_transaksi);
-        return $stmt->execute();
-    }
 }
 ?>
