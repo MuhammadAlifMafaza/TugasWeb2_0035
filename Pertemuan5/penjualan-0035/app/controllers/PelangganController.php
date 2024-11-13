@@ -2,32 +2,72 @@
 require_once 'app/models/Pelanggan.php';
 
 class PelangganController {
-    public $PelangganModel;
+    private $pelangganModel;
 
     public function __construct($dbConnection) {
-        $this->PelangganModel = new Pelanggan($dbConnection);
+        $this->pelangganModel = new Pelanggan($dbConnection);
     }
 
-    public function show($id) {
-        $Pelanggan = $this->PelangganModel->getDataById($id);
-        return $Pelanggan; // Mengembalikan data pengguna
+    public function index() {
+        // Cek apakah ada id_pelanggan di URL untuk detail Pelanggan
+        $IdPelanggan = isset($_GET['id_pelanggan']) ? $_GET['id_pelanggan'] : null;
+
+        if ($IdPelanggan) {
+            // Jika Id Pelanggan ada, ambil data Pelanggan spesifik
+            $Pelanggan = $this->pelangganModel->getPelangganById($IdPelanggan);
+            include_once 'app/views/Pelanggan/PelangganDetailView.php'; // View untuk detail Pelanggan
+        } else {
+            // Jika tidak ada Id Pelanggan, tampilkan semua Pelanggan
+            $Pelanggan = $this->pelangganModel->tampilPelanggan();
+            include_once 'app/views/Pelanggan/PelangganListView.php'; // View untuk daftar Pelanggan
+        }
     }
 
-    public function getAllPelanggans() {
-        return $this->PelangganModel->tampilData();
+    public function addPelanggan() {
+        // Tampilkan form untuk tambah Pelanggan
+        include_once 'app/views/Pelanggan/PelangganInputView.php';
     }
 
-    public function addPelanggan($name, $email) {
-        return $this->PelangganModel->tambahData($name, $email);
+    public function simpan() {
+        // Menyimpan Pelanggan baru ke database
+        $IdPelanggan = $_POST['id_pelanggan'];
+        $namaPelanggan = $_POST['nama_Pelanggan'];
+        $harga = $_POST['harga'];
+        $stok = $_POST['stok'];
+
+        $this->pelangganModel->tambahPelanggan($IdPelanggan, $namaPelanggan, $harga, $stok);
+        header("Location: ?page=Pelanggan&action=index");
+        exit();
     }
 
-    public function updatePelanggan($id, $name, $email) {
-        return $this->PelangganModel->editData($id, $name, $email);
+    public function edit() {
+        // Tampilkan form edit Pelanggan
+        $IdPelanggan = isset($_GET['id_pelanggan']) ? $_GET['id_pelanggan'] : null;
+        if ($IdPelanggan) {
+            $Pelanggan = $this->pelangganModel->getPelangganById($IdPelanggan);
+            include_once 'app/views/Pelanggan/PelangganUpdateView.php';
+        }
     }
 
-    public function deletePelanggan($id) {
-        return $this->PelangganModel->hapusData($id);
+    public function update() {
+        // Mengupdate data Pelanggan di database
+        $IdPelanggan = $_POST['id_pelanggan'];
+        $namaPelanggan = $_POST['nama_Pelanggan'];
+        $harga = $_POST['harga'];
+        $stok = $_POST['stok'];
+
+        $this->pelangganModel->editPelanggan($IdPelanggan, $namaPelanggan, $harga, $stok);
+        header("Location: ?page=Pelanggan&action=index");
+        exit();
     }
-    
+
+    public function delete() {
+        // Menghapus data Pelanggan dari database
+        $IdPelanggan = isset($_GET['id_pelanggan']) ? $_GET['id_pelanggan'] : null;
+        if ($IdPelanggan) {
+            $this->pelangganModel->hapusPelanggan($IdPelanggan);
+            header("Location: ?page=Pelanggan&action=index");
+            exit();
+        }
+    }
 }
-?>

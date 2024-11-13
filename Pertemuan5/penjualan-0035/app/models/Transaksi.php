@@ -5,50 +5,52 @@ class Transaksi {
     private $db;
 
     public function __construct($db) {
-        $this->db = $db;  // Objek database disimpan
+        $this->db = $db;
     }
 
-    // Mendapatkan data pengguna berdasarkan ID
-    public function getDataById($id) {
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = :id");
-        $stmt->bindParam(':id', $id);
+    // Mendapatkan data barang berdasarkan id_transaksi
+    public function getBarangByKode($id_transaksi) {
+        $stmt = $this->db->prepare("SELECT * FROM barang WHERE id_transaksi = :id_transaksi");
+        $stmt->bindParam(':id_transaksi', $id_transaksi);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Menampilkan semua data pengguna
-    public function tampilData() {
-        $stmt = $this->db->prepare("SELECT id, name, email FROM users");
+    // Menampilkan semua data barang
+    public function tampilBarang() {
+        $stmt = $this->db->prepare("SELECT * FROM barang");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Method untuk menambah data pengguna
-    public function tambahData($name, $email) {
-        $query = "INSERT INTO users (name, email) VALUES (:name, :email)";
+    // Menambah data barang
+    public function tambahBarang($kodeBarang, $namaBarang, $harga, $stok) {
+        $query = "INSERT INTO barang (id_transaksi, nama_barang, harga, stok) VALUES (:id_transaksi, :nama_barang, :harga, :stok)";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':id_transaksi', $kodeBarang);
+        $stmt->bindParam(':nama_barang', $namaBarang);
+        $stmt->bindParam(':harga', $harga);
+        $stmt->bindParam(':stok', $stok);
         return $stmt->execute();
     }
 
-    // Method untuk update data pengguna
-    public function editData($id, $name, $email) {
-        $query = "UPDATE users SET name = :name, email = :email WHERE id = :id";
+    // Update data barang
+    public function editBarang($id_transaksi, $namaBarang, $harga, $stok) {
+        $query = "UPDATE barang SET nama_barang = :nama_barang, harga = :harga, stok = :stok WHERE id_transaksi = :id_transaksi";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':id_transaksi', $id_transaksi);
+        $stmt->bindParam(':nama_barang', $namaBarang);
+        $stmt->bindParam(':harga', $harga);
+        $stmt->bindParam(':stok', $stok);
         return $stmt->execute();
     }
 
-    // menghapus data pengguna
-    public function hapusData($id) {
-        $query = "DELETE FROM users WHERE id = :id";
+    // Hapus data barang
+    public function hapusBarang($id_transaksi) {
+        $query = "DELETE FROM barang WHERE id_transaksi = :id_transaksi";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id_transaksi', $id_transaksi);
         return $stmt->execute();
     }
-    
 }
 ?>

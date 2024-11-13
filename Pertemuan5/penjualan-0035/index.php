@@ -29,9 +29,14 @@ switch ($page) {
     case 'transaksi':
         $controller = new TransaksiController($dbConnection);
         break;
-    default :
+    default:
         $controller = new HomeController($dbConnection);
 }
 
-$controller->$action();
-?>
+// Memanggil metode pada controller
+if (method_exists($controller, $action)) {
+    $controller->$action();
+} else {
+    // Metode tidak ditemukan, tampilkan halaman kesalahan atau alihkan ke halaman utama
+    echo "Error: Action '$action' not found.";
+}
