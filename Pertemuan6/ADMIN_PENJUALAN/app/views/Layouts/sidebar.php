@@ -9,7 +9,7 @@
                 // Mendapatkan nilai `action` dari URL untuk menentukan halaman aktif
                 $action = isset($_GET['action']) ? $_GET['action'] : 'home';
                 ?>
-                    <li class="nav-item"> 
+                    <li class="na   v-item"> 
                         <a href="<?= base_url('/'); ?>" class="nav-link <?= $action === 'home' ? 'active' : '' ?>"> 
                             <i class="nav-icon bi bi-speedometer"></i>
                             <p>Dashboard</p>
