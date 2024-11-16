@@ -1,4 +1,7 @@
-<?php include 'app/views/layout/Header.php'; ?>
+<?php
+require_once 'app/views/layout/Header.php'; // Header dan Navbar
+require_once 'app/views/layout/Sidebar.php'; // Sidebar
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,4 +22,6 @@
     </div>
 </body>
 </html>
-<?php include 'app/views/layout/Footer.php'; ?>
+<?php
+require_once 'app/views/layout/Footer.php'; // Footer
+?>
