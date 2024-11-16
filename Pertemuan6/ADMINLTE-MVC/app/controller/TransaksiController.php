@@ -50,24 +50,19 @@ class TransaksiController {
     }
     
     public function detail() {
+        // Ambil id_transaksi dari URL
         $idTransaksi = isset($_GET['id_transaksi']) ? $_GET['id_transaksi'] : null;
     
         if ($idTransaksi) {
             // Ambil data transaksi berdasarkan id_transaksi
             $transaksi = $this->transaksiModel->getTransaksiById($idTransaksi);
-    
-            // Pastikan data transaksi ada sebelum mengirim ke view
-            if ($transaksi) {
-                include_once 'app/views/Transaksi/TransaksiDetailView.php'; // Tampilkan view dengan data transaksi
-            } else {
-                // Jika transaksi tidak ditemukan
-                echo "Transaksi tidak ditemukan.";
-            }
+            // Tampilkan view detail transaksi
+            include_once 'app/views/Transaksi/TransaksiDetailView.php';
         } else {
             // Jika tidak ada id_transaksi, redirect ke daftar transaksi
             header("Location: ?page=transaksi&action=index");
-            exit();
         }
     }
+    
 }
 ?>

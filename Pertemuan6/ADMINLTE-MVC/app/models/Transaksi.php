@@ -30,6 +30,7 @@ class Transaksi {
         $stmt->execute();
         return $stmt->fetchColumn() > 0;
     }
+    
     // Mendapatkan ID transaksi berikutnya dengan format TXN-001, TXN-002, dst.
     public function getNextTransaksiId() {
         // Ambil transaksi terakhir berdasarkan ID

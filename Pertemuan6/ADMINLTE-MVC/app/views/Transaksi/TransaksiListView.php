@@ -32,6 +32,7 @@ require_once 'app/views/layout/Sidebar.php'; // Sidebar
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Id Transaksi</th>
                                     <th>Kode Barang</th>
                                     <th>ID Pelanggan</th>
                                     <th>Jumlah</th>
@@ -45,6 +46,7 @@ require_once 'app/views/layout/Sidebar.php'; // Sidebar
                             <?php foreach ($transaksiList as $transaksi): ?>
                                 <tr>
                                     <td><?= $no++; ?></td>
+                                    <td><?= htmlspecialchars($transaksi['id_transaksi']); ?></td>
                                     <td><?= htmlspecialchars($transaksi['kode_barang']); ?></td>
                                     <td><?= htmlspecialchars($transaksi['id_pelanggan']); ?></td>
                                     <td><?= htmlspecialchars($transaksi['jumlah']); ?></td>
