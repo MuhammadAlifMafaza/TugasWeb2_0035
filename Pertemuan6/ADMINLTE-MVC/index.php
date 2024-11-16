@@ -1,12 +1,13 @@
+<!-- File Utama(index.php) -->
 <?php
 // keterlibatan file yang diperlukan
-require_once 'app\controller\HomeController.php';
-require_once 'app\controller\BarangController.php';
-require_once 'app\controller\PelangganController.php';
-require_once 'app\controller\TransaksiController.php';
-require_once 'app\models\Barang.php';
-require_once 'app\models\Pelanggan.php';
-require_once 'app\models\Transaksi.php';
+require_once 'app/controller/HomeController.php';
+require_once 'app/controller/BarangController.php';
+require_once 'app/controller/PelangganController.php';
+require_once 'app/controller/TransaksiController.php';
+require_once 'app/models/Barang.php';
+require_once 'app/models/Pelanggan.php';
+require_once 'app/models/Transaksi.php';
 
 // Mengatur koneksi database
 require_once 'app/config/database.php';

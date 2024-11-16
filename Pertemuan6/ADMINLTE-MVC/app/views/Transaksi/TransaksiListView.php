@@ -1,6 +1,8 @@
 <!-- TransaksiListView.php -->
-<?php include 'app/views/layout/Header.php'; ?>
-<!DOCTYPE html>
+<?php
+require_once 'app/views/layout/Header.php'; // Header dan Navbar
+require_once 'app/views/layout/Sidebar.php'; // Sidebar
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -43,4 +45,6 @@
     </div>
 </body>
 </html>
-<?php include 'app/views/layout/Footer.php'; ?>
+<?php
+require_once 'app/views/layout/Footer.php'; // Footer
+?>

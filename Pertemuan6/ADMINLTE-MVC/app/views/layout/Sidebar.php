@@ -1,3 +1,4 @@
+<!-- Layout Sidebar -->
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -14,42 +15,38 @@
           <img src="app/public/img/potrait.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Muhammad Alif Mafaza</a>
+          <a href="index.php?page=home" class="d-block">Muhammad Alif Mafaza</a>
         </div>
       </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          <li class="nav-header">
+          Dashboard
+          </li>
+          <li class="nav-item">
+            <a href="./index.html" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt "></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
           <li class="nav-header">LABELS</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="index.php?page=barang" class="nav-link">
               <i class="nav-icon far fa-circle text-danger"></i>
               <p class="text">Barang</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="index.php?page=pelanggan" class="nav-link">
               <i class="nav-icon far fa-circle text-warning"></i>
               <p>Pelanggan</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="index.php?page=transaksi" class="nav-link">
               <i class="nav-icon far fa-circle text-info"></i>
               <p>Transaksi</p>
             </a>
