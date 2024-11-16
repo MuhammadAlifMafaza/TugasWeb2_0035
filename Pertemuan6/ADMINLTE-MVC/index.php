@@ -1,9 +1,9 @@
 <?php
 // keterlibatan file yang diperlukan
 require_once 'app\controller\HomeController.php';
-require_once 'app\controllers\BarangController.php';
-require_once 'app\controllers\PelangganController.php';
-require_once 'app\controllers\TransaksiController.php';
+require_once 'app\controller\BarangController.php';
+require_once 'app\controller\PelangganController.php';
+require_once 'app\controller\TransaksiController.php';
 require_once 'app\models\Barang.php';
 require_once 'app\models\Pelanggan.php';
 require_once 'app\models\Transaksi.php';
