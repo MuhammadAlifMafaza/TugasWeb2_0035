@@ -37,12 +37,9 @@ class TransaksiController {
         $harga = $_POST['harga'];
         $tanggal = $_POST['tanggal'];
     
-        // Hitung total harga
-        $totalHarga = $jumlah * $harga;
-    
         try {
-            // Panggil metode tambahTransaksi pada model
-            $this->transaksiModel->tambahTransaksi($kodeBarang, $idPelanggan, $jumlah, $totalHarga, $tanggal);
+            // Panggil metode tambahTransaksi pada model (ID transaksi sudah ditambahkan otomatis)
+            $this->transaksiModel->tambahTransaksi($kodeBarang, $idPelanggan, $jumlah, $harga, $tanggal);
             // Redirect ke halaman index Transaksi setelah berhasil menambah data
             header("Location: ?page=transaksi&action=index");
         } catch (Exception $e) {
@@ -53,19 +50,24 @@ class TransaksiController {
     }
     
     public function detail() {
-        // Ambil id_transaksi dari URL
         $idTransaksi = isset($_GET['id_transaksi']) ? $_GET['id_transaksi'] : null;
     
         if ($idTransaksi) {
             // Ambil data transaksi berdasarkan id_transaksi
             $transaksi = $this->transaksiModel->getTransaksiById($idTransaksi);
-            // Tampilkan view detail transaksi
-            include_once 'app/views/Transaksi/TransaksiDetailView.php';
+    
+            // Pastikan data transaksi ada sebelum mengirim ke view
+            if ($transaksi) {
+                include_once 'app/views/Transaksi/TransaksiDetailView.php'; // Tampilkan view dengan data transaksi
+            } else {
+                // Jika transaksi tidak ditemukan
+                echo "Transaksi tidak ditemukan.";
+            }
         } else {
             // Jika tidak ada id_transaksi, redirect ke daftar transaksi
             header("Location: ?page=transaksi&action=index");
+            exit();
         }
     }
-    
 }
 ?>
