@@ -1,4 +1,3 @@
-<!-- BarangListView.php -->
 <?php
 require_once 'app/views/layout/Header.php'; // Header dan Navbar
 require_once 'app/views/layout/Sidebar.php'; // Sidebar
@@ -9,15 +8,12 @@ require_once 'app/views/layout/Sidebar.php'; // Sidebar
 <head>
     <meta charset="UTF-8">
     <title>Daftar Barang</title>
-    <!-- Link ke CSS AdminLTE -->
     <link rel="stylesheet" href="public/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="public/AdminLTE-3.2.0/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -28,7 +24,6 @@ require_once 'app/views/layout/Sidebar.php'; // Sidebar
             </div>
         </section>
 
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <!-- Tombol Tambah Barang -->
@@ -41,7 +36,6 @@ require_once 'app/views/layout/Sidebar.php'; // Sidebar
                     <div class="card-header">
                         <h3 class="card-title">Data Barang</h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -83,22 +77,17 @@ require_once 'app/views/layout/Sidebar.php'; // Sidebar
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
-
-    <?php require_once 'app/views/layout/Footer.php'; // Footer ?>
 </div>
-<!-- ./wrapper -->
-
-<!-- Script JS AdminLTE -->
-<script src="public/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<?php
+require_once 'app/views/layout/Footer.php'; // Footer
+?>
+<!-- JS AdminLTE -->
 <script src="public/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
+<script src="public/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="public/AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
 </body>
 </html>
