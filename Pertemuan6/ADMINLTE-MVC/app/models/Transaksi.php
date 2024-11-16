@@ -10,11 +10,12 @@ class Transaksi {
 
     // Mendapatkan data transaksi berdasarkan id_transaksi
     public function getTransaksiById($id_transaksi) {
-        $stmt = $this->db->prepare("SELECT * FROM transaksi WHERE id_transaksi = :id_transaksi");
+        $stmt = $this->db->prepare("SELECT id_transaksi, kode_barang, id_pelanggan, jumlah, total_harga, tanggal FROM transaksi WHERE id_transaksi = :id_transaksi");
         $stmt->bindParam(':id_transaksi', $id_transaksi);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC); // Mengembalikan hasil transaksi atau null jika tidak ditemukan
+        return $stmt->fetch(PDO::FETCH_ASSOC); // Mengembalikan satu transaksi atau null jika tidak ditemukan
     }
+
     
     // Menampilkan semua data transaksi
     public function tampilTransaksi() {
@@ -30,7 +31,7 @@ class Transaksi {
         $stmt->execute();
         return $stmt->fetchColumn() > 0;
     }
-    
+
     // Mendapatkan ID transaksi berikutnya dengan format TXN-001, TXN-002, dst.
     public function getNextTransaksiId() {
         // Ambil transaksi terakhir berdasarkan ID
@@ -69,5 +70,10 @@ class Transaksi {
         return $stmt->execute();
     }
 
+    public function detailTransaksi() {
+        $stmt = $this->db->prepare("SELECT id_transaksi, kode_barang, id_pelanggan, jumlah, total_harga, tanggal FROM transaksi");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>
