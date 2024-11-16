@@ -27,12 +27,12 @@
           Dashboard
           </li>
           <li class="nav-item">
-            <a href="index.php?page=home" class="nav-link active">
+            <a href="index.php?page=home" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt "></i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-header">LABELS</li>
+          <li class="nav-header">Barang</li>
           <li class="nav-item">
             <a href="index.php?page=barang" class="nav-link">
               <i class="nav-icon far fa-circle text-danger"></i>
