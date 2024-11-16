@@ -92,10 +92,20 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Blank Page</h1>
+            <h1>Ryugazaki Store</h1>
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <p>Selamat Datang di aplikasi penjualan RyugaZaki Store</p>
+            </div>
+          </div>
+        </div>
     </section>
 
     <!-- Main content -->
@@ -140,7 +150,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>    
   </div>
 
   <!-- Footer -->
