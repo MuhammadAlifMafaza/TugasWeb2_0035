@@ -70,10 +70,24 @@ class Transaksi {
         return $stmt->execute();
     }
 
-    public function detailTransaksi() {
-        $stmt = $this->db->prepare("SELECT id_transaksi, kode_barang, id_pelanggan, jumlah, total_harga, tanggal FROM transaksi");
+    // models/Transaksi.php
+    public function detailTransaksi($idTransaksi) {
+        $stmt = $this->db->prepare("SELECT 
+                t.id_transaksi,
+                b.kode_barang,
+                b.nama_barang,
+                p.id_pelanggan,
+                p.nama_pelanggan,
+                t.jumlah,
+                t.total_harga,
+                t.tanggal
+            FROM transaksi t
+            JOIN barang b ON b.kode_barang = t.kode_barang
+            JOIN pelanggan p ON p.id_pelanggan = t.id_pelanggan
+            WHERE t.id_transaksi = :id_transaksi");  // Ensure you add this WHERE clause to filter by ID
+        $stmt->bindParam(':id_transaksi', $idTransaksi);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC); // Fetch a single record
     }
 }
 ?>
